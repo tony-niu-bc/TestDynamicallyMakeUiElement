@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/find_listpage_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#f7f7f9"
+        >
+
+        <RelativeLayout
+            android:id="@+id/find_listpage_categorychoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:clickable="true"
+            >
+
+            <TextView
+                android:id="@+id/find_listpage_categorytitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="17.33sp"
+                android:gravity="center"
+                android:text="所有"
+                android:textColor="#333333"
+                />
+
+            <ImageView
+                android:id="@+id/find_listpage_categoryicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/down"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/find_listpage_categorytitle"
+                android:layout_toEndOf="@id/find_listpage_categorytitle"
+                android:contentDescription=""
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp"
+            android:background="#d5d6d9"
+            android:layout_alignParentBottom="true"
+            android:contentDescription=""
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

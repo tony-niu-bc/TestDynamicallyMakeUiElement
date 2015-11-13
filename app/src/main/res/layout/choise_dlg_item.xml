@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <RelativeLayout
+        android:id="@+id/left_area"
+        android:layout_width="134dp"
+        android:layout_height="52.67dp"
+        android:layout_marginTop="15.33dp"
+        android:background="#ffffff"
+        android:clickable="true"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/left_selected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/selected_btn"
+                    android:visibility="invisible"
+                    />
+
+                <ImageView
+                    android:id="@+id/left_unselected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/unselected_btn"
+                    />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="13.33sp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/right_area"
+        android:layout_width="134dp"
+        android:layout_height="52.67dp"
+        android:layout_marginTop="15.33dp"
+        android:background="#ffffff"
+        android:clickable="true"
+        android:layout_marginLeft="15.33dp"
+        android:layout_marginStart="15.33dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/right_selected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/selected_btn"
+                    android:visibility="invisible"
+                    />
+
+                <ImageView
+                    android:id="@+id/right_unselected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/unselected_btn"
+                    />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="13.33sp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    >
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48.33dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp"
+        android:paddingTop="33.33dp"
+        android:paddingBottom="33.33dp"
+        android:background="#edf7f7f7"
+        >
+
+        <RelativeLayout
+            android:id="@+id/all"
+            android:layout_width="283.33dp"
+            android:layout_height="52.67dp"
+            android:background="#ffffff"
+            android:clickable="true"
+            android:enabled="false"
+            >
+
+            <ImageView
+                android:id="@+id/all_separator"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:contentDescription=""
+                />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/all_separator"
+                android:layout_toStartOf="@id/all_separator"
+                >
+
+                <ImageView
+                    android:id="@+id/all_selected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/selected_btn"
+                    android:visibility="invisible"
+                    />
+
+                <ImageView
+                    android:id="@+id/all_unselected_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:src="@drawable/unselected_btn"
+                    />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/all_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/all_separator"
+                android:layout_toEndOf="@id/all_separator"
+                android:layout_centerVertical="true"
+                android:textColor="#666666"
+                android:textSize="13.33sp"
+                android:text="所有"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
