@@ -193,6 +193,7 @@ public class ChoiseDialogFragment extends DialogFragment {
                 tvRight.setText(mlistCategory.get(i).getCatalogName());
 
                 RelativeLayout rlRight = (RelativeLayout)viewCategoryBtnPair.findViewById(R.id.right_area);
+                rlRight.setVisibility(View.VISIBLE);
                 rlRight.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

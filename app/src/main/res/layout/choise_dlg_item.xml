@@ -70,6 +70,7 @@
         android:clickable="true"
         android:layout_marginLeft="15.33dp"
         android:layout_marginStart="15.33dp"
+        android:visibility="invisible"
         >
 
         <LinearLayout

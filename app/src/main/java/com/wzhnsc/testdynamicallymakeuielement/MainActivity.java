@@ -16,7 +16,25 @@ public class MainActivity extends FragmentActivity {
     private TextView       mtvCategoryTitle;
     private ImageView      mivCategoryIcon;
 
+    private ChoiseLinearLayout mchoiseLinearLayout;
+
     private ArrayList<Category> mCatalogList;
+
+    ChoiseLinearLayout.SelectedItemListener selectedItemListener = new ChoiseLinearLayout.SelectedItemListener() {
+        @Override
+        public void onDialogDismiss(int resultCode, Category discoverCatalog) {
+            if (Activity.RESULT_OK == resultCode) {
+                // 保存用户选择的分类
+                mrlCategoryChoice.setTag(discoverCatalog);
+                // 显示新选分类的名称
+                mtvCategoryTitle.setText(discoverCatalog.getCatalogName());
+                // 获得新先分类的列表
+            }
+
+            mchoiseLinearLayout.setVisibility(View.INVISIBLE);
+            mivCategoryIcon.setImageResource(R.drawable.down);
+        }
+    };
 
     ChoiseDialogFragment.DismissListener dl = new ChoiseDialogFragment.DismissListener() {
         @Override
@@ -39,20 +57,28 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(R.layout.activity_main);
 
+        mchoiseLinearLayout = (ChoiseLinearLayout)findViewById(R.id.choise_area);
+        mchoiseLinearLayout.setSelectedItemListener(selectedItemListener);
+
         mrlCategoryChoice = (RelativeLayout)findViewById(R.id.find_listpage_categorychoice);
         mrlCategoryChoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mivCategoryIcon.setImageResource(R.drawable.up);
+                if (View.INVISIBLE == mchoiseLinearLayout.getVisibility()) {
+                    mivCategoryIcon.setImageResource(R.drawable.up);
 
-                Category discoverCatalog = (Category) v.getTag();
-                ChoiseDialogFragment.getInstance(-1,
-                                                 mCatalogList,
-                                                 discoverCatalog.getCatalogId(),
-                                                 dl)
-                        .show(getSupportFragmentManager(), "");
+                    Category discoverCatalog = (Category) v.getTag();
+                    mchoiseLinearLayout.setVisibility(View.VISIBLE, discoverCatalog.getCatalogId());
+                }
+                else {
+                    mchoiseLinearLayout.setVisibility(View.INVISIBLE);
+                    mivCategoryIcon.setImageResource(R.drawable.down);
+                }
             }
         });
+
+        // 全部分类后台不返回，需要自己固定添加为首元素
+        mrlCategoryChoice.setTag(mchoiseLinearLayout.getDefaultCatalog());
 
         // 全部分类后台不返回，需要自己固定添加为首元素
         mCatalogList = new ArrayList<Category>();
@@ -84,9 +110,22 @@ public class MainActivity extends FragmentActivity {
         fourthCatalog.setCatalogId(5);
         fourthCatalog.setCatalogName("分类四");
         mCatalogList.add(fourthCatalog);
+
+        mchoiseLinearLayout.addNewCataLogList(mCatalogList);
         // test - end
 
         mtvCategoryTitle = (TextView)findViewById(R.id.find_listpage_categorytitle);
         mivCategoryIcon = (ImageView)findViewById(R.id.find_listpage_categoryicon);
+    }
+
+    public void showChoiseDlg(View v) {
+        mivCategoryIcon.setImageResource(R.drawable.up);
+
+        Category discoverCatalog = (Category)mrlCategoryChoice.getTag();
+        ChoiseDialogFragment.getInstance(-1,
+                                         mCatalogList,
+                                         discoverCatalog.getCatalogId(),
+                                         dl)
+                            .show(getSupportFragmentManager(), "");
     }
 }
