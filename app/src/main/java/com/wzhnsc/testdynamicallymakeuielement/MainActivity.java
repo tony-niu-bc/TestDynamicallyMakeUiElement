@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +25,74 @@ public class MainActivity extends FragmentActivity {
 
     private ArrayList<Category> mCatalogList;
 
+    private void showCategoryChoiceDlg() {
+        AnimationSet animationSet = new AnimationSet(true);
+
+        // 两个参数分别表示初始透明度和目标透明(1表示不透明，0表示完全透明)
+        final AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+        alphaAnimation.setDuration(400);
+        alphaAnimation.setStartOffset(100);
+        alphaAnimation.setFillAfter(true);
+
+        animationSet.addAnimation(alphaAnimation);
+
+        mchoiseLinearLayout.startAnimation(animationSet);
+
+        //通过加载XML动画设置文件来创建一个Animation对象；
+        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_top2bottom);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+
+        //得到一个LayoutAnimationController对象；
+        LayoutAnimationController controller = new LayoutAnimationController(animation);
+        //设置控件显示的顺序；
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        //为ListView设置LayoutAnimationController属性；
+        mchoiseLinearLayout.setLayoutAnimation(controller);
+        mchoiseLinearLayout.startLayoutAnimation();
+    }
+
+    private void hideCategoryChoiceDlg() {
+        //通过加载XML动画设置文件来创建一个Animation对象；
+        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_bottom2top);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+
+        //得到一个LayoutAnimationController对象；
+        LayoutAnimationController controller = new LayoutAnimationController(animation);
+
+        //设置控件显示的顺序；
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+
+        //为ListView设置LayoutAnimationController属性；
+        mchoiseLinearLayout.setLayoutAnimation(controller);
+        mchoiseLinearLayout.startLayoutAnimation();
+
+        AnimationSet animationSet = new AnimationSet(true);
+        // 两个参数分别表示初始透明度和目标透明(1表示不透明，0表示完全透明)
+        final AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+        alphaAnimation.setDuration(400);
+        alphaAnimation.setFillAfter(true);
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mchoiseLinearLayout.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+
+        animationSet.addAnimation(alphaAnimation);
+
+        mchoiseLinearLayout.startAnimation(animationSet);
+    }
+
     ChoiseLinearLayout.SelectedItemListener selectedItemListener = new ChoiseLinearLayout.SelectedItemListener() {
         @Override
         public void onDialogDismiss(int resultCode, Category discoverCatalog) {
@@ -31,7 +104,7 @@ public class MainActivity extends FragmentActivity {
                 // 获得新先分类的列表
             }
 
-            mchoiseLinearLayout.setVisibility(View.INVISIBLE);
+            hideCategoryChoiceDlg();
             mivCategoryIcon.setImageResource(R.drawable.down);
         }
     };
@@ -69,9 +142,11 @@ public class MainActivity extends FragmentActivity {
 
                     Category discoverCatalog = (Category) v.getTag();
                     mchoiseLinearLayout.setVisibility(View.VISIBLE, discoverCatalog.getCatalogId());
+
+                    showCategoryChoiceDlg();
                 }
                 else {
-                    mchoiseLinearLayout.setVisibility(View.INVISIBLE);
+                    hideCategoryChoiceDlg();
                     mivCategoryIcon.setImageResource(R.drawable.down);
                 }
             }
